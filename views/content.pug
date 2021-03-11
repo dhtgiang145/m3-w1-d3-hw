@@ -1,0 +1,32 @@
+include ./head.pug
+body
+    aside#leftside
+    aside#rightside
+    #container 
+        include ./header.pug
+        main
+            aside#photos
+                blogphoto
+            div#component2
+                blogcomment
+            section#blogposts
+                div.post(v-for='blog in blogs' :blog='blog')
+                    img(v-on:click='showbox' :src='blog.image')
+                    span {{blog.author}} 
+                    span {{blog.date}} 
+                    span {{blog.reply}}
+                    p {{blog.content}}
+                div#modal(v-for='blog in blogs' :blog='blog')
+                    #close(v-on:click='closebox') X
+                    h4 {{blog.author}}
+                    b Foodie Level:   {{blog.foodie}} 
+                    br
+                    b Bio:
+                    p {{blog.bio}}    
+        include ./footer.pug
+// Bootstrap jQuery
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+// Bootstrap Popper
+script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
+// Bootstrap JS
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
